@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import MembersList from 'components/MembersList';
+import AddEditMember from 'components/AddEditMember';
 
-function App() {
+const initialTeam = [
+  { name: "Dennis", id: 0, role: "developer", email: "dennis@something.else" },
+  { name: "Melvin", id: 1, role: "developer", email: "melvin@something.else" },
+  { name: "Gerald", id: 2, role: "developer", email: "gerald@something.else" },
+  { name: "Malcolm", id: 3, role: "developer", email: "malcolm@something.else" }
+]
+
+export default function App() {
+
+  const [membersList, setMembersList] = useState(initialTeam)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Route path="/" exact render={(props)=><MembersList {...props} membersList={membersList} setMembersList={setMembersList}/>}/>
+      <Route path="/add" render={(props)=><AddEditMember {...props} membersList={membersList} setMembersList={setMembersList}/>}/>
+      <Redirect to="/"/>
     </div>
   );
 }
 
-export default App;
