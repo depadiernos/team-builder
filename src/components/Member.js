@@ -8,7 +8,7 @@ const Member = styled.div`
   margin: 1rem;
   h2 {
     border-bottom: 1px solid black;
-    margin: 0.5rem;
+    padding: 0 1rem;
   }
   h5 {
     margin: 0.5rem;
@@ -22,6 +22,7 @@ export default function(props) {
       <h2>{props.details.name}</h2>
       <h5>Role: {props.details.role}</h5>
       <h5>Email: {props.details.email}</h5>
+      {props.children}
     </Member>
   )
 }
